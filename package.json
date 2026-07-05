@@ -1,0 +1,15 @@
+{
+  "name": "mytodo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler pages dev public --d1=DB",
+    "deploy": "wrangler pages deploy public",
+    "db:create": "wrangler d1 create mytodo-db",
+    "db:migrate:local": "wrangler d1 execute mytodo-db --local --file=./schema.sql",
+    "db:migrate:remote": "wrangler d1 execute mytodo-db --remote --file=./schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}
