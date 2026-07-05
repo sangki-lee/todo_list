@@ -15,19 +15,26 @@
   <div class="max-w-md mx-auto px-5 py-10">
     <h1 class="text-[26px] font-bold text-gray-900 mb-7 tracking-tight">할 일 목록</h1>
 
-    <form id="todo-form" class="flex gap-2 mb-7">
+    <form id="todo-form" class="flex flex-col gap-2 mb-7 bg-white rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04)] p-3">
       <input
         id="todo-input"
         type="text"
         placeholder="할 일 입력"
         maxlength="200"
         autocomplete="off"
-        class="flex-1 min-w-0 rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] px-4 py-3.5 text-[15px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#3182F6] transition"
+        class="rounded-xl bg-[#F2F4F6] px-4 py-3 text-[15px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#3182F6] transition"
       />
-      <button
-        type="submit"
-        class="shrink-0 rounded-2xl bg-[#3182F6] hover:bg-[#2272eb] text-white font-semibold px-5 py-3.5 text-[15px] active:scale-95 transition"
-      >추가</button>
+      <div class="flex gap-2">
+        <input
+          id="todo-date"
+          type="date"
+          class="flex-1 min-w-0 rounded-xl bg-[#F2F4F6] px-3.5 py-2.5 text-[14px] text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#3182F6] transition"
+        />
+        <button
+          type="submit"
+          class="shrink-0 rounded-xl bg-[#3182F6] hover:bg-[#2272eb] text-white font-semibold px-5 py-2.5 text-[15px] active:scale-95 transition"
+        >추가</button>
+      </div>
     </form>
 
     <div id="todo-list" class="space-y-2.5"></div>
@@ -45,6 +52,7 @@
           <p class="todo-detail text-[13px] text-gray-400 mt-1 break-words whitespace-pre-wrap"></p>
         </div>
         <div class="flex gap-1.5 shrink-0">
+          <button class="complete-btn rounded-xl bg-gray-100 text-gray-600 text-[13px] font-medium px-3 py-2 transition">완료</button>
           <button class="edit-btn rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 text-[13px] font-medium px-3 py-2 transition">수정</button>
           <button class="delete-btn rounded-xl bg-gray-100 hover:bg-red-50 hover:text-red-500 text-gray-600 text-[13px] font-medium px-3 py-2 transition">삭제</button>
         </div>
@@ -52,6 +60,7 @@
       <div class="edit-mode hidden flex-col gap-2">
         <input class="edit-title-input rounded-xl bg-[#F2F4F6] px-3.5 py-2.5 text-[15px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#3182F6]" maxlength="200" />
         <textarea class="edit-detail-input rounded-xl bg-[#F2F4F6] px-3.5 py-2.5 text-[13px] text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-[#3182F6]" rows="2" placeholder="상세 내용 (선택)" maxlength="1000"></textarea>
+        <input class="edit-date-input rounded-xl bg-[#F2F4F6] px-3.5 py-2.5 text-[14px] text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#3182F6]" type="date" />
         <div class="flex justify-end gap-1.5">
           <button class="cancel-btn rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 text-[13px] font-medium px-3 py-2 transition">취소</button>
           <button class="save-btn rounded-xl bg-[#3182F6] hover:bg-[#2272eb] text-white text-[13px] font-semibold px-3 py-2 transition">저장</button>
