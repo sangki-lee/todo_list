@@ -2,6 +2,8 @@
 
 개인용 할 일 저장 및 관리 웹서비스. 로그인 없이 바로 사용합니다.
 
+배포 주소: https://mytodo-71z.pages.dev/
+
 ## 기술 스택
 - 프론트엔드: HTML/CSS/JS + Tailwind CSS (CDN, `public/`)
 - 백엔드: Cloudflare Pages Functions (`functions/`)
