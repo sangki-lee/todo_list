@@ -93,9 +93,20 @@ function renderTodos(todos) {
     const section = document.createElement("div");
     section.className = "mb-6 last:mb-0";
 
-    const header = document.createElement("h2");
-    header.className = "text-[13px] font-semibold text-gray-400 mb-2 px-1";
-    header.textContent = formatDateLabel(date);
+    const header = document.createElement("div");
+    header.className = "flex items-center justify-between mb-2 px-1";
+
+    const label = document.createElement("h2");
+    label.className = "text-[13px] font-semibold text-gray-400";
+    label.textContent = formatDateLabel(date);
+    header.appendChild(label);
+
+    const deleteDateBtn = document.createElement("button");
+    deleteDateBtn.className = "delete-date-btn text-[12px] text-gray-400 hover:text-red-500 font-medium transition";
+    deleteDateBtn.textContent = "삭제";
+    deleteDateBtn.dataset.date = date;
+    header.appendChild(deleteDateBtn);
+
     section.appendChild(header);
 
     const itemsWrap = document.createElement("div");
@@ -154,6 +165,20 @@ formEl.addEventListener("submit", async (e) => {
 });
 
 listEl.addEventListener("click", async (e) => {
+  if (e.target.matches(".delete-date-btn")) {
+    const date = e.target.dataset.date;
+    if (!confirm(`${formatDateLabel(date)}의 할 일을 모두 삭제할까요?`)) return;
+    try {
+      const todos = await fetchTodos();
+      const ids = todos.filter((t) => t.due_date === date).map((t) => t.id);
+      await Promise.all(ids.map((id) => deleteTodo(id)));
+      await loadTodos();
+    } catch (err) {
+      alert(err.message);
+    }
+    return;
+  }
+
   const itemEl = e.target.closest(".todo-item");
   if (!itemEl) return;
   const id = itemEl.dataset.id;
